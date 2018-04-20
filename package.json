@@ -1,0 +1,19 @@
+{
+  "name": "16dots",
+  "version": "1.0.0",
+  "description": "step sequencer with parameter lock",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "music",
+    "sequencer",
+    "beat",
+    "beats",
+    "live",
+    "dj"
+  ],
+  "author": "Ingo Duarte",
+  "license": "ISC"
+}
