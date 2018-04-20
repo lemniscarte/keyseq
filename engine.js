@@ -45,39 +45,36 @@ const startSequencer = () => {
 // calls callStep at (data.playhead) position
 // implements .reset and .stop methods
 const moveTick = () => {
+  bang(); // call step's function (will be an object with methods?)
   say(data.playHead);
-
   if (data.playHead < Object.keys(data.steps).length) {
-    bang();
     data.playHead++;
   } else {
     data.playHead = 0;
   }
-  moveTick.reset = function() {
+  moveTick.reset = () => {
     data.playHead = 0;
   };
-  moveTick.stop = function() {
+  moveTick.stop = () => {
     clearInterval(player);
   };
 };
 
-// var resetPlayhead = function(ms) {
-//   setTimeout(function(ms) {
-//     moveTick.reset();
-//   }, ms);
-// };
+// wrapper for reset (allowing for delayed onset)
+var resetPlayhead = ms => {
+  setTimeout(ms => {
+    moveTick.reset();
+  }, ms);
+};
 
-// var stopPlayhead = function(ms) {
-//   setTimeout(function(ms) {
-//     moveTick.stop();
-//   }, ms);
-// };
-
-// function callSteps(x) {
-//   steps[x]();
-// }
+// wrapper for stop (allowing for delayed onset)
+var stopPlayhead = ms => {
+  setTimeout(ms => {
+    moveTick.stop();
+  }, ms);
+};
 
 makeSequencer(16);
 startSequencer();
-// resetPlayhead(700);
-say(data.steps);
+resetPlayhead(700);
+// say(data.steps);
